@@ -1,0 +1,1499 @@
+<!doctype html>
+<html lang="en" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Traditional Stone Artisans | Reservation Platform</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="/_sdk/data_sdk.js"></script>
+  <script src="/_sdk/element_sdk.js"></script>
+  <style>
+    body {
+      box-sizing: border-box;
+    }
+    
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+    
+    * {
+      font-family: 'Poppins', sans-serif;
+    }
+    
+    .gradient-bg {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+    
+    .card-hover {
+      transition: all 0.3s ease;
+    }
+    
+    .card-hover:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    }
+    
+    .smooth-scroll {
+      scroll-behavior: smooth;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .fade-in {
+      animation: fadeIn 0.6s ease-out;
+    }
+    
+    .success-message {
+      background-color: #10b981;
+      color: white;
+      padding: 1rem;
+      border-radius: 0.5rem;
+      margin-top: 1rem;
+      animation: fadeIn 0.5s ease-out;
+    }
+    
+    .admin-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+    }
+    
+    .admin-table th,
+    .admin-table td {
+      padding: 12px;
+      text-align: left;
+      border-bottom: 1px solid #e5e7eb;
+    }
+    
+    .admin-table th {
+      font-weight: 600;
+      background-color: #f9fafb;
+    }
+    
+    .admin-table tr:hover {
+      background-color: #f3f4f6;
+    }
+    
+    .status-badge {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 12px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+    
+    .status-pending {
+      background-color: #fef3c7;
+      color: #92400e;
+    }
+    
+    .status-confirmed {
+      background-color: #d1fae5;
+      color: #065f46;
+    }
+    
+    .status-completed {
+      background-color: #dbeafe;
+      color: #1e40af;
+    }
+    
+    .status-cancelled {
+      background-color: #fee2e2;
+      color: #991b1b;
+    }
+  </style>
+  <style>@view-transition { navigation: auto; }</style>
+ </head>
+ <body class="h-full smooth-scroll">
+  <div id="app-wrapper" class="w-full h-full overflow-auto"><!-- Navigation Header -->
+   <nav id="main-nav" class="w-full sticky top-0 z-50 shadow-md">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+     <div class="flex justify-between items-center h-16">
+      <div class="flex items-center">
+       <svg class="w-10 h-10 mr-3" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+       </svg><span id="logo-text" class="text-xl font-bold">Stone Artisans</span>
+      </div>
+      <div class="hidden md:flex items-center space-x-6"><a href="#home" class="nav-link hover:opacity-80 transition">Home</a> <a href="#about" class="nav-link hover:opacity-80 transition">About</a> <a href="#products" class="nav-link hover:opacity-80 transition">Products</a> <a href="#benefits" class="nav-link hover:opacity-80 transition">Benefits</a> <a href="#reserve" class="nav-link hover:opacity-80 transition">Reserve</a> <a href="#admin" class="nav-link hover:opacity-80 transition">Admin</a>
+      </div><button id="lang-toggle" class="px-4 py-2 rounded-lg font-medium transition"> English | ಕನ್ನಡ </button>
+     </div>
+    </div>
+   </nav><!-- Hero Section -->
+   <section id="home" class="w-full py-20 px-4">
+    <div class="max-w-7xl mx-auto">
+     <div class="text-center fade-in">
+      <h1 id="hero-title" class="text-5xl md:text-6xl font-bold mb-6">Reviving Traditional Stone Artisans</h1>
+      <p id="hero-subtitle" class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">Connecting authentic handcrafted stone products with conscious consumers</p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center"><a href="#products" id="explore-btn" class="px-8 py-4 rounded-lg font-semibold text-lg transition transform hover:scale-105"> Explore Products </a> <a href="#reserve" id="reserve-btn" class="px-8 py-4 rounded-lg font-semibold text-lg transition transform hover:scale-105"> Reserve Product </a>
+      </div>
+     </div><!-- Cultural Illustration -->
+     <div class="mt-16 text-center">
+      <div class="inline-flex items-center justify-center space-x-8 text-6xl"><span>🏺</span> <span>🪨</span> <span>⚒️</span> <span>🔨</span>
+      </div>
+     </div>
+    </div>
+   </section><!-- About Section -->
+   <section id="about" class="w-full py-20 px-4">
+    <div class="max-w-7xl mx-auto">
+     <h2 id="about-title" class="text-4xl font-bold text-center mb-12">About the Artisans</h2>
+     <div class="grid md:grid-cols-2 gap-12 items-center">
+      <div>
+       <p id="about-text-1" class="text-lg mb-4">For generations, stone artisans in rural India have crafted cookware and tools using traditional hand methods passed down through families.</p>
+       <p id="about-text-2" class="text-lg mb-4">These skilled craftspeople work in small workshops and homes, shaping stone into beautiful, functional products that have been central to Indian cooking traditions for centuries.</p>
+       <p id="about-text-3" class="text-lg">Today, these artisans face declining visibility, limited market access, and competition from mass-produced alternatives, threatening this invaluable cultural heritage.</p>
+      </div>
+      <div class="rounded-xl shadow-lg p-8">
+       <h3 id="challenges-title" class="text-2xl font-bold mb-6">Challenges Faced</h3>
+       <div class="space-y-4">
+        <div class="flex items-start"><span class="text-3xl mr-4">📱</span>
+         <div>
+          <h4 id="challenge-1-title" class="font-semibold text-lg">No Digital Presence</h4>
+          <p id="challenge-1-desc" class="text-sm">Limited online visibility restricts customer reach</p>
+         </div>
+        </div>
+        <div class="flex items-start"><span class="text-3xl mr-4">🤝</span>
+         <div>
+          <h4 id="challenge-2-title" class="font-semibold text-lg">Middleman Dependency</h4>
+          <p id="challenge-2-desc" class="text-sm">Reliance on intermediaries reduces profit margins</p>
+         </div>
+        </div>
+        <div class="flex items-start"><span class="text-3xl mr-4">📉</span>
+         <div>
+          <h4 id="challenge-3-title" class="font-semibold text-lg">Declining Skills</h4>
+          <p id="challenge-3-desc" class="text-sm">Traditional craftsmanship at risk of extinction</p>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- Problem Statement -->
+   <section id="problem" class="w-full py-20 px-4">
+    <div class="max-w-7xl mx-auto">
+     <h2 id="problem-title" class="text-4xl font-bold text-center mb-12">The Marketing Gap</h2>
+     <div class="grid md:grid-cols-3 gap-8">
+      <div class="card-hover rounded-xl shadow-lg p-8 text-center">
+       <div class="text-5xl mb-4">
+        🚫
+       </div>
+       <h3 id="problem-card-1-title" class="text-xl font-bold mb-3">No Online Presence</h3>
+       <p id="problem-card-1-desc">Artisans remain invisible to digital consumers</p>
+      </div>
+      <div class="card-hover rounded-xl shadow-lg p-8 text-center">
+       <div class="text-5xl mb-4">
+        💬
+       </div>
+       <h3 id="problem-card-2-title" class="text-xl font-bold mb-3">Word-of-Mouth Only</h3>
+       <p id="problem-card-2-desc">Limited awareness beyond local communities</p>
+      </div>
+      <div class="card-hover rounded-xl shadow-lg p-8 text-center">
+       <div class="text-5xl mb-4">
+        💰
+       </div>
+       <h3 id="problem-card-3-title" class="text-xl font-bold mb-3">Poor Pricing</h3>
+       <p id="problem-card-3-desc">Unfair compensation for handcrafted work</p>
+      </div>
+     </div>
+    </div>
+   </section><!-- Products Section -->
+   <section id="products" class="w-full py-20 px-4">
+    <div class="max-w-7xl mx-auto">
+     <h2 id="products-title" class="text-4xl font-bold text-center mb-4">Our Products</h2>
+     <p id="products-subtitle" class="text-center text-lg mb-12">Authentic handcrafted stone cookware for traditional cooking</p>
+     <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8"><!-- Product 1 -->
+      <div class="card-hover rounded-xl shadow-lg overflow-hidden">
+       <div class="h-48 flex items-center justify-center text-8xl">
+        🏺
+       </div>
+       <div class="p-6">
+        <h3 class="product-name text-xl font-bold mb-2">Stone Cookware</h3>
+        <p class="product-desc text-sm mb-3">Traditional cooking vessels for authentic flavors</p>
+        <p class="product-weight text-xs mb-4">⚖️ Weight: 3-5 kg</p><span class="handmade-badge inline-block px-3 py-1 rounded-full text-xs font-semibold mb-4">✋ Handmade</span> <button class="reserve-product-btn w-full py-2 rounded-lg font-semibold transition" data-product="Stone Cookware"> Reserve Product </button>
+       </div>
+      </div><!-- Product 2 -->
+      <div class="card-hover rounded-xl shadow-lg overflow-hidden">
+       <div class="h-48 flex items-center justify-center text-8xl">
+        ⚙️
+       </div>
+       <div class="p-6">
+        <h3 class="product-name text-xl font-bold mb-2">Grinding Stone</h3>
+        <p class="product-desc text-sm mb-3">Traditional stone grinder for spices and grains</p>
+        <p class="product-weight text-xs mb-4">⚖️ Weight: 8-12 kg</p><span class="handmade-badge inline-block px-3 py-1 rounded-full text-xs font-semibold mb-4">✋ Handmade</span> <button class="reserve-product-btn w-full py-2 rounded-lg font-semibold transition" data-product="Grinding Stone"> Reserve Product </button>
+       </div>
+      </div><!-- Product 3 -->
+      <div class="card-hover rounded-xl shadow-lg overflow-hidden">
+       <div class="h-48 flex items-center justify-center text-8xl">
+        🫕
+       </div>
+       <div class="p-6">
+        <h3 class="product-name text-xl font-bold mb-2">Mortar &amp; Pestle</h3>
+        <p class="product-desc text-sm mb-3">Essential tool for crushing herbs and spices</p>
+        <p class="product-weight text-xs mb-4">⚖️ Weight: 2-4 kg</p><span class="handmade-badge inline-block px-3 py-1 rounded-full text-xs font-semibold mb-4">✋ Handmade</span> <button class="reserve-product-btn w-full py-2 rounded-lg font-semibold transition" data-product="Mortar &amp; Pestle"> Reserve Product </button>
+       </div>
+      </div><!-- Product 4 -->
+      <div class="card-hover rounded-xl shadow-lg overflow-hidden">
+       <div class="h-48 flex items-center justify-center text-8xl">
+        🍳
+       </div>
+       <div class="p-6">
+        <h3 class="product-name text-xl font-bold mb-2">Stone Tawa</h3>
+        <p class="product-desc text-sm mb-3">Flat stone griddle for making rotis and dosas</p>
+        <p class="product-weight text-xs mb-4">⚖️ Weight: 4-6 kg</p><span class="handmade-badge inline-block px-3 py-1 rounded-full text-xs font-semibold mb-4">✋ Handmade</span> <button class="reserve-product-btn w-full py-2 rounded-lg font-semibold transition" data-product="Stone Tawa"> Reserve Product </button>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- How It Works -->
+   <section id="how-it-works" class="w-full py-20 px-4">
+    <div class="max-w-7xl mx-auto">
+     <h2 id="how-title" class="text-4xl font-bold text-center mb-12">How Reservation Works</h2>
+     <div class="grid md:grid-cols-3 lg:grid-cols-6 gap-6">
+      <div class="text-center">
+       <div class="w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4 text-3xl">
+        👀
+       </div>
+       <h4 id="step-1-title" class="font-semibold mb-2">Browse Online</h4>
+       <p id="step-1-desc" class="text-sm">Explore products</p>
+      </div>
+      <div class="text-center">
+       <div class="w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4 text-3xl">
+        ✅
+       </div>
+       <h4 id="step-2-title" class="font-semibold mb-2">Reserve</h4>
+       <p id="step-2-desc" class="text-sm">Select &amp; reserve</p>
+      </div>
+      <div class="text-center">
+       <div class="w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4 text-3xl">
+        📧
+       </div>
+       <h4 id="step-3-title" class="font-semibold mb-2">Notification</h4>
+       <p id="step-3-desc" class="text-sm">Artisan receives</p>
+      </div>
+      <div class="text-center">
+       <div class="w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4 text-3xl">
+        ✔️
+       </div>
+       <h4 id="step-4-title" class="font-semibold mb-2">Confirmation</h4>
+       <p id="step-4-desc" class="text-sm">Availability check</p>
+      </div>
+      <div class="text-center">
+       <div class="w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4 text-3xl">
+        🚶
+       </div>
+       <h4 id="step-5-title" class="font-semibold mb-2">Visit</h4>
+       <p id="step-5-desc" class="text-sm">Customer visits</p>
+      </div>
+      <div class="text-center">
+       <div class="w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4 text-3xl">
+        🎁
+       </div>
+       <h4 id="step-6-title" class="font-semibold mb-2">Collect</h4>
+       <p id="step-6-desc" class="text-sm">Inspect &amp; pickup</p>
+      </div>
+     </div>
+     <div class="mt-12 text-center p-6 rounded-xl">
+      <p id="pickup-notice" class="text-lg font-semibold">⚠️ Pickup Only – No Home Delivery</p>
+     </div>
+    </div>
+   </section><!-- Benefits Section -->
+   <section id="benefits" class="w-full py-20 px-4">
+    <div class="max-w-7xl mx-auto">
+     <h2 id="benefits-title" class="text-4xl font-bold text-center mb-12">Benefits of Stone Cooking</h2>
+     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div class="rounded-xl shadow-lg p-8">
+       <div class="text-5xl mb-4">
+        🥗
+       </div>
+       <h3 id="benefit-1-title" class="text-xl font-bold mb-3">Retains Nutrients</h3>
+       <p id="benefit-1-desc">Stone cooking preserves essential vitamins and minerals in food</p>
+      </div>
+      <div class="rounded-xl shadow-lg p-8">
+       <div class="text-5xl mb-4">
+        🔥
+       </div>
+       <h3 id="benefit-2-title" class="text-xl font-bold mb-3">Even Heat</h3>
+       <p id="benefit-2-desc">Uniform heat distribution ensures perfectly cooked meals</p>
+      </div>
+      <div class="rounded-xl shadow-lg p-8">
+       <div class="text-5xl mb-4">
+        😋
+       </div>
+       <h3 id="benefit-3-title" class="text-xl font-bold mb-3">Enhanced Taste</h3>
+       <p id="benefit-3-desc">Natural minerals enhance authentic traditional flavors</p>
+      </div>
+      <div class="rounded-xl shadow-lg p-8">
+       <div class="text-5xl mb-4">
+        🌱
+       </div>
+       <h3 id="benefit-4-title" class="text-xl font-bold mb-3">Eco-Friendly</h3>
+       <p id="benefit-4-desc">Sustainable and environmentally conscious cooking method</p>
+      </div>
+      <div class="rounded-xl shadow-lg p-8">
+       <div class="text-5xl mb-4">
+        🚫
+       </div>
+       <h3 id="benefit-5-title" class="text-xl font-bold mb-3">Chemical-Free</h3>
+       <p id="benefit-5-desc">No toxic coatings or harmful chemical additives</p>
+      </div>
+      <div class="rounded-xl shadow-lg p-8">
+       <div class="text-5xl mb-4">
+        ⏱️
+       </div>
+       <h3 id="benefit-6-title" class="text-xl font-bold mb-3">Long-Lasting</h3>
+       <p id="benefit-6-desc">Durable products that last for generations</p>
+      </div>
+     </div>
+    </div>
+   </section><!-- Value Proposition -->
+   <section id="value" class="w-full py-20 px-4">
+    <div class="max-w-7xl mx-auto">
+     <h2 id="value-title" class="text-4xl font-bold text-center mb-12">Our Value Proposition</h2>
+     <div class="grid md:grid-cols-3 gap-8">
+      <div class="rounded-xl shadow-lg p-8">
+       <h3 id="value-artisan-title" class="text-2xl font-bold mb-4">👨‍🎨 For Artisans</h3>
+       <ul class="space-y-3">
+        <li class="value-artisan-1">✓ Digital visibility and market reach</li>
+        <li class="value-artisan-2">✓ Fair pricing without middlemen</li>
+        <li class="value-artisan-3">✓ Direct customer relationships</li>
+        <li class="value-artisan-4">✓ Recognition for craftsmanship</li>
+       </ul>
+      </div>
+      <div class="rounded-xl shadow-lg p-8">
+       <h3 id="value-consumer-title" class="text-2xl font-bold mb-4">🛒 For Consumers</h3>
+       <ul class="space-y-3">
+        <li class="value-consumer-1">✓ Authentic handcrafted products</li>
+        <li class="value-consumer-2">✓ Physical inspection before purchase</li>
+        <li class="value-consumer-3">✓ Support rural livelihoods</li>
+        <li class="value-consumer-4">✓ Preserve cultural heritage</li>
+       </ul>
+      </div>
+      <div class="rounded-xl shadow-lg p-8">
+       <h3 id="value-ngo-title" class="text-2xl font-bold mb-4">🤲 For NGOs</h3>
+       <ul class="space-y-3">
+        <li class="value-ngo-1">✓ Easy artisan identification</li>
+        <li class="value-ngo-2">✓ Transparent support system</li>
+        <li class="value-ngo-3">✓ Cultural preservation impact</li>
+        <li class="value-ngo-4">✓ Measurable community development</li>
+       </ul>
+      </div>
+     </div>
+    </div>
+   </section><!-- Marketing Solutions -->
+   <section id="marketing" class="w-full py-20 px-4">
+    <div class="max-w-7xl mx-auto">
+     <h2 id="marketing-title" class="text-4xl font-bold text-center mb-12">Marketing &amp; Awareness Solutions</h2>
+     <div class="grid md:grid-cols-2 gap-8">
+      <div class="rounded-xl shadow-lg p-8">
+       <div class="flex items-start mb-4"><span class="text-4xl mr-4">🌐</span>
+        <div>
+         <h3 id="marketing-1-title" class="text-xl font-bold mb-2">Digital Presence</h3>
+         <p id="marketing-1-desc">Website platform providing 24/7 online visibility</p>
+        </div>
+       </div>
+      </div>
+      <div class="rounded-xl shadow-lg p-8">
+       <div class="flex items-start mb-4"><span class="text-4xl mr-4">📱</span>
+        <div>
+         <h3 id="marketing-2-title" class="text-xl font-bold mb-2">Social Media</h3>
+         <p id="marketing-2-desc">Influencer collaborations and food blogger partnerships</p>
+        </div>
+       </div>
+      </div>
+      <div class="rounded-xl shadow-lg p-8">
+       <div class="flex items-start mb-4"><span class="text-4xl mr-4">🏪</span>
+        <div>
+         <h3 id="marketing-3-title" class="text-xl font-bold mb-2">Local Markets</h3>
+         <p id="marketing-3-desc">Market stalls and live demonstration events</p>
+        </div>
+       </div>
+      </div>
+      <div class="rounded-xl shadow-lg p-8">
+       <div class="flex items-start mb-4"><span class="text-4xl mr-4">📖</span>
+        <div>
+         <h3 id="marketing-4-title" class="text-xl font-bold mb-2">Storytelling</h3>
+         <p id="marketing-4-desc">Artisan journey narratives and cultural heritage content</p>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- Reservation Section -->
+   <section id="reserve" class="w-full py-20 px-4">
+    <div class="max-w-3xl mx-auto">
+     <h2 id="reserve-title" class="text-4xl font-bold text-center mb-4">Reserve Your Product</h2>
+     <p id="reserve-subtitle" class="text-center mb-12">Fill out the form below to reserve a handcrafted stone product</p>
+     <div class="rounded-xl shadow-lg p-8">
+      <form id="reservation-form">
+       <div class="mb-6"><label for="customer-name" id="label-name" class="block font-semibold mb-2">Your Name *</label> <input type="text" id="customer-name" required class="w-full px-4 py-3 border-2 rounded-lg focus:outline-none focus:border-opacity-50">
+       </div>
+       <div class="mb-6"><label for="mobile-number" id="label-mobile" class="block font-semibold mb-2">Mobile Number *</label> <input type="tel" id="mobile-number" required pattern="[0-9]{10}" class="w-full px-4 py-3 border-2 rounded-lg focus:outline-none focus:border-opacity-50">
+       </div>
+       <div class="mb-6"><label for="email" id="label-email" class="block font-semibold mb-2">Email (Gmail) *</label> <input type="email" id="email" required class="w-full px-4 py-3 border-2 rounded-lg focus:outline-none focus:border-opacity-50">
+       </div>
+       <div class="mb-6"><label for="product-select" id="label-product" class="block font-semibold mb-2">Select Product *</label> <select id="product-select" required class="w-full px-4 py-3 border-2 rounded-lg focus:outline-none focus:border-opacity-50"> <option value="" class="select-option-placeholder">-- Choose a product --</option> <option value="Stone Cookware" class="select-option-1">Stone Cookware</option> <option value="Grinding Stone" class="select-option-2">Grinding Stone</option> <option value="Mortar &amp; Pestle" class="select-option-3">Mortar &amp; Pestle</option> <option value="Stone Tawa" class="select-option-4">Stone Tawa</option> </select>
+       </div>
+       <div class="mb-6"><label for="pickup-location" id="label-pickup" class="block font-semibold mb-2">Preferred Pickup Location *</label> <input type="text" id="pickup-location" required class="w-full px-4 py-3 border-2 rounded-lg focus:outline-none focus:border-opacity-50">
+       </div>
+       <div class="mb-6 p-4 rounded-lg">
+        <p id="no-delivery-notice" class="text-center font-semibold">⚠️ Pickup Only – No Home Delivery Available</p>
+       </div><button type="submit" id="submit-btn" class="w-full py-4 rounded-lg font-bold text-lg transition transform hover:scale-105"> Submit Reservation </button>
+       <div id="loading-indicator" style="display: none;" class="mt-4 text-center">
+        <div class="inline-block animate-spin rounded-full h-8 w-8 border-b-2"></div>
+        <p id="loading-text" class="mt-2">Submitting reservation...</p>
+       </div>
+       <div id="success-message" style="display: none;" class="success-message">
+        <p id="success-text" class="font-semibold">✅ Reservation Submitted Successfully!</p>
+        <p id="success-detail" class="text-sm mt-2">You will be contacted via WhatsApp (+91 9591502176) or email (stoneproducts9@gmail.com) for confirmation.</p>
+       </div>
+      </form>
+     </div>
+    </div>
+   </section><!-- Admin Dashboard Section -->
+   <section id="admin" class="w-full py-20 px-4">
+    <div class="max-w-7xl mx-auto">
+     <h2 id="admin-title" class="text-4xl font-bold text-center mb-4">Admin Dashboard</h2>
+     <p id="admin-subtitle" class="text-center mb-12">View and manage all product reservations</p><!-- Login Form -->
+     <div id="admin-login" class="max-w-md mx-auto rounded-xl shadow-lg p-8">
+      <div class="text-center mb-6">
+       <div class="text-6xl mb-4">
+        🔐
+       </div>
+       <h3 class="text-2xl font-bold mb-2">Admin Access</h3>
+       <p class="text-sm">Enter password to view reservations</p>
+      </div>
+      <form id="admin-login-form">
+       <div class="mb-6"><label for="admin-password-input" class="block font-semibold mb-2">Password *</label> <input type="password" id="admin-password-input" required class="w-full px-4 py-3 border-2 rounded-lg focus:outline-none">
+       </div><button type="submit" id="admin-login-btn" class="w-full py-3 rounded-lg font-bold transition"> Access Dashboard </button>
+       <div id="admin-error" style="display: none;" class="mt-4 p-3 rounded-lg bg-red-100 text-red-800 text-sm">
+        ❌ Incorrect password. Please try again.
+       </div>
+      </form>
+     </div><!-- Dashboard Content -->
+     <div id="admin-dashboard" style="display: none;">
+      <div class="flex justify-between items-center mb-6">
+       <div>
+        <h3 class="text-2xl font-bold">All Reservations</h3>
+        <p class="text-sm" id="admin-stats">Total: 0 | Pending: 0 | Confirmed: 0 | Completed: 0</p>
+       </div><button id="admin-logout-btn" class="px-6 py-2 rounded-lg font-semibold transition"> Logout </button>
+      </div><!-- Filters -->
+      <div class="mb-6 grid md:grid-cols-4 gap-4">
+       <div><label class="block text-sm font-semibold mb-2">Filter by Product</label> <select id="filter-product" class="w-full px-4 py-2 border-2 rounded-lg"> <option value="">All Products</option> <option value="Stone Cookware">Stone Cookware</option> <option value="Grinding Stone">Grinding Stone</option> <option value="Mortar &amp; Pestle">Mortar &amp; Pestle</option> <option value="Stone Tawa">Stone Tawa</option> </select>
+       </div>
+       <div><label class="block text-sm font-semibold mb-2">Filter by Status</label> <select id="filter-status" class="w-full px-4 py-2 border-2 rounded-lg"> <option value="">All Status</option> <option value="pending">Pending</option> <option value="confirmed">Confirmed</option> <option value="completed">Completed</option> <option value="cancelled">Cancelled</option> </select>
+       </div>
+       <div><label class="block text-sm font-semibold mb-2">Search</label> <input type="text" id="search-box" placeholder="Name, email, phone..." class="w-full px-4 py-2 border-2 rounded-lg">
+       </div>
+       <div class="flex items-end"><button id="clear-filters-btn" class="w-full px-4 py-2 rounded-lg font-semibold transition"> Clear Filters </button>
+       </div>
+      </div><!-- Reservations Table -->
+      <div class="rounded-xl shadow-lg overflow-hidden">
+       <div class="overflow-x-auto">
+        <table class="admin-table">
+         <thead>
+          <tr>
+           <th>Date</th>
+           <th>Customer Name</th>
+           <th>Mobile</th>
+           <th>Email</th>
+           <th>Product</th>
+           <th>Pickup Location</th>
+           <th>Status</th>
+           <th>Actions</th>
+          </tr>
+         </thead>
+         <tbody id="reservations-tbody">
+          <tr>
+           <td colspan="8" class="text-center py-8">
+            <div class="text-4xl mb-2">
+             📋
+            </div><p class="text-gray-500">No reservations yet</p></td>
+          </tr>
+         </tbody>
+        </table>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- Contact Section -->
+   <section id="contact" class="w-full py-20 px-4">
+    <div class="max-w-6xl mx-auto">
+     <h2 id="contact-title" class="text-4xl font-bold text-center mb-12">Contact Information</h2>
+     <div class="grid md:grid-cols-3 gap-8">
+      <div class="rounded-xl shadow-lg p-8 text-center">
+       <div class="text-5xl mb-4">
+        📧
+       </div>
+       <h3 id="contact-email-title" class="text-xl font-bold mb-3">Email Artisan</h3>
+       <p id="artisan-email-display" class="mb-4">stoneproducts9@gmail.com</p><a href="mailto:stoneproducts9@gmail.com" id="email-link" class="inline-block px-6 py-3 rounded-lg font-semibold transition"> Send Email </a>
+      </div>
+      <div class="rounded-xl shadow-lg p-8 text-center">
+       <div class="text-5xl mb-4">
+        📱
+       </div>
+       <h3 id="contact-phone-title" class="text-xl font-bold mb-3">Call Artisan</h3>
+       <p id="artisan-phone-display" class="mb-4">+91 9591502176</p><a href="tel:+919591502176" id="phone-link" class="inline-block px-6 py-3 rounded-lg font-semibold transition"> Make Call </a>
+      </div>
+      <div class="rounded-xl shadow-lg p-8 text-center">
+       <div class="text-5xl mb-4">
+        💬
+       </div>
+       <h3 id="contact-whatsapp-title" class="text-xl font-bold mb-3">WhatsApp Us</h3>
+       <p id="artisan-whatsapp-display" class="mb-4">+91 9591502176</p><a href="https://wa.me/919591502176" id="whatsapp-link" target="_blank" rel="noopener noreferrer" class="inline-block px-6 py-3 rounded-lg font-semibold transition"> Chat Now </a>
+      </div>
+     </div>
+    </div>
+   </section><!-- Footer -->
+   <footer class="w-full py-12 px-4">
+    <div class="max-w-7xl mx-auto text-center">
+     <p id="footer-text" class="text-lg mb-4">© 2026 Traditional Stone Artisans Platform</p>
+     <p id="footer-tagline" class="mb-6">Preserving Heritage • Supporting Livelihoods • Promoting Sustainability</p>
+     <div class="flex justify-center space-x-6 text-3xl"><span>🏺</span> <span>🪨</span> <span>⚒️</span> <span>🔨</span> <span>🌾</span>
+     </div>
+    </div>
+   </footer>
+  </div>
+  <script>
+    const defaultConfig = {
+      background_color: "#f3f4f6",
+      surface_color: "#ffffff",
+      text_color: "#1f2937",
+      primary_action_color: "#8b5cf6",
+      secondary_action_color: "#6366f1",
+      font_family: "Poppins",
+      font_size: 16,
+      site_title_en: "Reviving Traditional Stone Artisans",
+      site_title_kn: "ಸಾಂಪ್ರದಾಯಿಕ ಕಲ್ಲು ಕುಶಲಕರ್ಮಿಗಳನ್ನು ಪುನರುಜ್ಜೀವನಗೊಳಿಸುವುದು",
+      hero_subtitle_en: "Connecting authentic handcrafted stone products with conscious consumers",
+      hero_subtitle_kn: "ಅಧಿಕೃತ ಕೈಯಿಂದ ತಯಾರಿಸಿದ ಕಲ್ಲಿನ ಉತ್ಪನ್ನಗಳನ್ನು ಜಾಗೃತ ಗ್ರಾಹಕರೊಂದಿಗೆ ಸಂಪರ್ಕಿಸುವುದು",
+      artisan_email: "stoneproducts9@gmail.com",
+      artisan_phone: "+91 9591502176",
+      artisan_whatsapp: "+919591502176",
+      pickup_location_en: "Rural Karnataka, India",
+      pickup_location_kn: "ಗ್ರಾಮೀಣ ಕರ್ನಾಟಕ, ಭಾರತ",
+      admin_password: "admin123"
+    };
+    
+    let currentLanguage = "en";
+    let reservations = [];
+    let isAdminLoggedIn = false;
+    let filteredReservations = [];
+    
+    const translations = {
+      en: {
+        logoText: "Stone Artisans",
+        navHome: "Home",
+        navAbout: "About",
+        navProducts: "Products",
+        navBenefits: "Benefits",
+        navReserve: "Reserve",
+        navAdmin: "Admin",
+        langToggle: "English | ಕನ್ನಡ",
+        heroTitle: "site_title_en",
+        heroSubtitle: "hero_subtitle_en",
+        exploreBtn: "Explore Products",
+        reserveBtn: "Reserve Product",
+        aboutTitle: "About the Artisans",
+        aboutText1: "For generations, stone artisans in rural India have crafted cookware and tools using traditional hand methods passed down through families.",
+        aboutText2: "These skilled craftspeople work in small workshops and homes, shaping stone into beautiful, functional products that have been central to Indian cooking traditions for centuries.",
+        aboutText3: "Today, these artisans face declining visibility, limited market access, and competition from mass-produced alternatives, threatening this invaluable cultural heritage.",
+        challengesTitle: "Challenges Faced",
+        challenge1Title: "No Digital Presence",
+        challenge1Desc: "Limited online visibility restricts customer reach",
+        challenge2Title: "Middleman Dependency",
+        challenge2Desc: "Reliance on intermediaries reduces profit margins",
+        challenge3Title: "Declining Skills",
+        challenge3Desc: "Traditional craftsmanship at risk of extinction",
+        problemTitle: "The Marketing Gap",
+        problemCard1Title: "No Online Presence",
+        problemCard1Desc: "Artisans remain invisible to digital consumers",
+        problemCard2Title: "Word-of-Mouth Only",
+        problemCard2Desc: "Limited awareness beyond local communities",
+        problemCard3Title: "Poor Pricing",
+        problemCard3Desc: "Unfair compensation for handcrafted work",
+        productsTitle: "Our Products",
+        productsSubtitle: "Authentic handcrafted stone cookware for traditional cooking",
+        productName1: "Stone Cookware",
+        productDesc1: "Traditional cooking vessels for authentic flavors",
+        productWeight1: "⚖️ Weight: 3-5 kg",
+        productName2: "Grinding Stone",
+        productDesc2: "Traditional stone grinder for spices and grains",
+        productWeight2: "⚖️ Weight: 8-12 kg",
+        productName3: "Mortar & Pestle",
+        productDesc3: "Essential tool for crushing herbs and spices",
+        productWeight3: "⚖️ Weight: 2-4 kg",
+        productName4: "Stone Tawa",
+        productDesc4: "Flat stone griddle for making rotis and dosas",
+        productWeight4: "⚖️ Weight: 4-6 kg",
+        handmadeBadge: "✋ Handmade",
+        reserveProductBtn: "Reserve Product",
+        howTitle: "How Reservation Works",
+        step1Title: "Browse Online",
+        step1Desc: "Explore products",
+        step2Title: "Reserve",
+        step2Desc: "Select & reserve",
+        step3Title: "Notification",
+        step3Desc: "Artisan receives",
+        step4Title: "Confirmation",
+        step4Desc: "Availability check",
+        step5Title: "Visit",
+        step5Desc: "Customer visits",
+        step6Title: "Collect",
+        step6Desc: "Inspect & pickup",
+        pickupNotice: "⚠️ Pickup Only – No Home Delivery",
+        benefitsTitle: "Benefits of Stone Cooking",
+        benefit1Title: "Retains Nutrients",
+        benefit1Desc: "Stone cooking preserves essential vitamins and minerals in food",
+        benefit2Title: "Even Heat",
+        benefit2Desc: "Uniform heat distribution ensures perfectly cooked meals",
+        benefit3Title: "Enhanced Taste",
+        benefit3Desc: "Natural minerals enhance authentic traditional flavors",
+        benefit4Title: "Eco-Friendly",
+        benefit4Desc: "Sustainable and environmentally conscious cooking method",
+        benefit5Title: "Chemical-Free",
+        benefit5Desc: "No toxic coatings or harmful chemical additives",
+        benefit6Title: "Long-Lasting",
+        benefit6Desc: "Durable products that last for generations",
+        valueTitle: "Our Value Proposition",
+        valueArtisanTitle: "👨‍🎨 For Artisans",
+        valueArtisan1: "✓ Digital visibility and market reach",
+        valueArtisan2: "✓ Fair pricing without middlemen",
+        valueArtisan3: "✓ Direct customer relationships",
+        valueArtisan4: "✓ Recognition for craftsmanship",
+        valueConsumerTitle: "🛒 For Consumers",
+        valueConsumer1: "✓ Authentic handcrafted products",
+        valueConsumer2: "✓ Physical inspection before purchase",
+        valueConsumer3: "✓ Support rural livelihoods",
+        valueConsumer4: "✓ Preserve cultural heritage",
+        valueNgoTitle: "🤲 For NGOs",
+        valueNgo1: "✓ Easy artisan identification",
+        valueNgo2: "✓ Transparent support system",
+        valueNgo3: "✓ Cultural preservation impact",
+        valueNgo4: "✓ Measurable community development",
+        marketingTitle: "Marketing & Awareness Solutions",
+        marketing1Title: "Digital Presence",
+        marketing1Desc: "Website platform providing 24/7 online visibility",
+        marketing2Title: "Social Media",
+        marketing2Desc: "Influencer collaborations and food blogger partnerships",
+        marketing3Title: "Local Markets",
+        marketing3Desc: "Market stalls and live demonstration events",
+        marketing4Title: "Storytelling",
+        marketing4Desc: "Artisan journey narratives and cultural heritage content",
+        reserveTitle: "Reserve Your Product",
+        reserveSubtitle: "Fill out the form below to reserve a handcrafted stone product",
+        labelName: "Your Name *",
+        labelMobile: "Mobile Number *",
+        labelEmail: "Email (Gmail) *",
+        labelProduct: "Select Product *",
+        labelPickup: "Preferred Pickup Location *",
+        selectOptionPlaceholder: "-- Choose a product --",
+        selectOption1: "Stone Cookware",
+        selectOption2: "Grinding Stone",
+        selectOption3: "Mortar & Pestle",
+        selectOption4: "Stone Tawa",
+        noDeliveryNotice: "⚠️ Pickup Only – No Home Delivery Available",
+        submitBtn: "Submit Reservation",
+        loadingText: "Submitting reservation...",
+        successText: "✅ Reservation Submitted Successfully!",
+        successDetail: "You will be contacted via WhatsApp (+91 9591502176) or email (stoneproducts9@gmail.com) for confirmation.",
+        adminTitle: "Admin Dashboard",
+        adminSubtitle: "View and manage all product reservations",
+        contactTitle: "Contact Information",
+        contactEmailTitle: "Email Artisan",
+        emailLink: "Send Email",
+        contactPhoneTitle: "Call Artisan",
+        phoneLink: "Make Call",
+        contactWhatsappTitle: "WhatsApp Us",
+        whatsappLink: "Chat Now",
+        footerText: "© 2026 Traditional Stone Artisans Platform",
+        footerTagline: "Preserving Heritage • Supporting Livelihoods • Promoting Sustainability",
+        pickupLocation: "pickup_location_en"
+      },
+      kn: {
+        logoText: "ಕಲ್ಲು ಕುಶಲಕರ್ಮಿಗಳು",
+        navHome: "ಮುಖಪುಟ",
+        navAbout: "ನಮ್ಮ ಬಗ್ಗೆ",
+        navProducts: "ಉತ್ಪನ್ನಗಳು",
+        navBenefits: "ಪ್ರಯೋಜನಗಳು",
+        navReserve: "ಕಾಯ್ದಿರಿಸಿ",
+        navAdmin: "ನಿರ್ವಾಹಕ",
+        langToggle: "English | ಕನ್ನಡ",
+        heroTitle: "site_title_kn",
+        heroSubtitle: "hero_subtitle_kn",
+        exploreBtn: "ಉತ್ಪನ್ನಗಳನ್ನು ಅನ್ವೇಷಿಸಿ",
+        reserveBtn: "ಉತ್ಪನ್ನವನ್ನು ಕಾಯ್ದಿರಿಸಿ",
+        aboutTitle: "ಕುಶಲಕರ್ಮಿಗಳ ಬಗ್ಗೆ",
+        aboutText1: "ತಲೆಮಾರುಗಳಿಂದ, ಗ್ರಾಮೀಣ ಭಾರತದ ಕಲ್ಲು ಕುಶಲಕರ್ಮಿಗಳು ಕುಟುಂಬಗಳ ಮೂಲಕ ಹಸ್ತಾಂತರಿಸಲ್ಪಟ್ಟ ಸಾಂಪ್ರದಾಯಿಕ ಹಸ್ತ ವಿಧಾನಗಳನ್ನು ಬಳಸಿ ಅಡುಗೆ ಪಾತ್ರೆಗಳು ಮತ್ತು ಉಪಕರಣಗಳನ್ನು ತಯಾರಿಸುತ್ತಿದ್ದಾರೆ.",
+        aboutText2: "ಈ ಕೌಶಲ್ಯಪೂರ್ಣ ಕುಶಲಕರ್ಮಿಗಳು ಸಣ್ಣ ಕಾರ್ಯಾಗಾರಗಳು ಮತ್ತು ಮನೆಗಳಲ್ಲಿ ಕೆಲಸ ಮಾಡುತ್ತಾರೆ, ಶತಮಾನಗಳಿಂದ ಭಾರತೀಯ ಅಡುಗೆ ಸಂಪ್ರದಾಯಗಳಿಗೆ ಕೇಂದ್ರವಾಗಿರುವ ಸುಂದರ, ಕ್ರಿಯಾತ್ಮಕ ಉತ್ಪನ್ನಗಳನ್ನು ರೂಪಿಸುತ್ತಾರೆ.",
+        aboutText3: "ಇಂದು, ಈ ಕುಶಲಕರ್ಮಿಗಳು ಕ್ಷೀಣಿಸುತ್ತಿರುವ ಗೋಚರತೆ, ಸೀಮಿತ ಮಾರುಕಟ್ಟೆ ಪ್ರವೇಶ ಮತ್ತು ಯಂತ್ರ-ನಿರ್ಮಿತ ಪರ್ಯಾಯಗಳ ಸ್ಪರ್ಧೆಯನ್ನು ಎದುರಿಸುತ್ತಿದ್ದಾರೆ, ಈ ಅಮೂಲ್ಯ ಸಾಂಸ್ಕೃತಿಕ ಪರಂಪರೆಗೆ ಬೆದರಿಕೆ ಹಾಕುತ್ತಿದೆ.",
+        challengesTitle: "ಎದುರಿಸುತ್ತಿರುವ ಸವಾಲುಗಳು",
+        challenge1Title: "ಯಾವುದೇ ಡಿಜಿಟಲ್ ಉಪಸ್ಥಿತಿ ಇಲ್ಲ",
+        challenge1Desc: "ಸೀಮಿತ ಆನ್‌ಲೈನ್ ಗೋಚರತೆ ಗ್ರಾಹಕರ ವ್ಯಾಪ್ತಿಯನ್ನು ನಿರ್ಬಂಧಿಸುತ್ತದೆ",
+        challenge2Title: "ಮಧ್ಯವರ್ತಿ ಅವಲಂಬನೆ",
+        challenge2Desc: "ಮಧ್ಯವರ್ತಿಗಳ ಮೇಲಿನ ಅವಲಂಬನೆ ಲಾಭದ ಅಂಚುಗಳನ್ನು ಕಡಿಮೆ ಮಾಡುತ್ತದೆ",
+        challenge3Title: "ಕುಸಿಯುತ್ತಿರುವ ಕೌಶಲ್ಯಗಳು",
+        challenge3Desc: "ಸಾಂಪ್ರದಾಯಿಕ ಕುಶಲಕರ್ಮಿಗಳು ಅಳಿವಿನ ಅಪಾಯದಲ್ಲಿದೆ",
+        problemTitle: "ಮಾರುಕಟ್ಟೆ ಅಂತರ",
+        problemCard1Title: "ಆನ್‌ಲೈನ್ ಉಪಸ್ಥಿತಿ ಇಲ್ಲ",
+        problemCard1Desc: "ಕುಶಲಕರ್ಮಿಗಳು ಡಿಜಿಟಲ್ ಗ್ರಾಹಕರಿಗೆ ಅದೃಶ್ಯವಾಗಿರುತ್ತಾರೆ",
+        problemCard2Title: "ಕೇವಲ ಬಾಯಿಮಾತು",
+        problemCard2Desc: "ಸ್ಥಳೀಯ ಸಮುದಾಯಗಳ ಆಚೆಗೆ ಸೀಮಿತ ಅರಿವು",
+        problemCard3Title: "ಕಳಪೆ ಬೆಲೆ",
+        problemCard3Desc: "ಹಸ್ತನಿರ್ಮಿತ ಕೆಲಸಕ್ಕೆ ಅನ್ಯಾಯದ ಪರಿಹಾರ",
+        productsTitle: "ನಮ್ಮ ಉತ್ಪನ್ನಗಳು",
+        productsSubtitle: "ಸಾಂಪ್ರದಾಯಿಕ ಅಡುಗೆಗಾಗಿ ಅಧಿಕೃತ ಹಸ್ತನಿರ್ಮಿತ ಕಲ್ಲಿನ ಅಡುಗೆ ಪಾತ್ರೆಗಳು",
+        productName1: "ಕಲ್ಲಿನ ಅಡುಗೆ ಪಾತ್ರೆಗಳು",
+        productDesc1: "ಅಧಿಕೃತ ಸುವಾಸನೆಗಾಗಿ ಸಾಂಪ್ರದಾಯಿಕ ಅಡುಗೆ ಪಾತ್ರೆಗಳು",
+        productWeight1: "⚖️ ತೂಕ: 3-5 ಕೆ.ಜಿ",
+        productName2: "ಅರೆಯುವ ಕಲ್ಲು",
+        productDesc2: "ಮಸಾಲೆಗಳು ಮತ್ತು ಧಾನ್ಯಗಳಿಗೆ ಸಾಂಪ್ರದಾಯಿಕ ಕಲ್ಲಿನ ಬೀಸುವ ಯಂತ್ರ",
+        productWeight2: "⚖️ ತೂಕ: 8-12 ಕೆ.ಜಿ",
+        productName3: "ಉಜ್ಜಲು ಮತ್ತು ಕೊಂಡಿ",
+        productDesc3: "ಗಿಡಮೂಲಿಕೆಗಳು ಮತ್ತು ಮಸಾಲೆಗಳನ್ನು ಪುಡಿಮಾಡಲು ಅತ್ಯಗತ್ಯ ಸಾಧನ",
+        productWeight3: "⚖️ ತೂಕ: 2-4 ಕೆ.ಜಿ",
+        productName4: "ಕಲ್ಲಿನ ತವಾ",
+        productDesc4: "ರೊಟ್ಟಿಗಳು ಮತ್ತು ದೋಸೆಗಳನ್ನು ಮಾಡಲು ಸಮತಟ್ಟಾದ ಕಲ್ಲಿನ ಗ್ರಿಡ್ಲ್",
+        productWeight4: "⚖️ ತೂಕ: 4-6 ಕೆ.ಜಿ",
+        handmadeBadge: "✋ ಹಸ್ತನಿರ್ಮಿತ",
+        reserveProductBtn: "ಉತ್ಪನ್ನವನ್ನು ಕಾಯ್ದಿರಿಸಿ",
+        howTitle: "ಕಾಯ್ದಿರಿಸುವುದು ಹೇಗೆ ಕೆಲಸ ಮಾಡುತ್ತದೆ",
+        step1Title: "ಆನ್‌ಲೈನ್‌ನಲ್ಲಿ ಬ್ರೌಸ್ ಮಾಡಿ",
+        step1Desc: "ಉತ್ಪನ್ನಗಳನ್ನು ಅನ್ವೇಷಿಸಿ",
+        step2Title: "ಕಾಯ್ದಿರಿಸಿ",
+        step2Desc: "ಆಯ್ಕೆಮಾಡಿ ಮತ್ತು ಕಾಯ್ದಿರಿಸಿ",
+        step3Title: "ಅಧಿಸೂಚನೆ",
+        step3Desc: "ಕುಶಲಕರ್ಮಿ ಸ್ವೀಕರಿಸುತ್ತಾರೆ",
+        step4Title: "ದೃಢೀಕರಣ",
+        step4Desc: "ಲಭ್ಯತೆ ಪರಿಶೀಲನೆ",
+        step5Title: "ಭೇಟಿ",
+        step5Desc: "ಗ್ರಾಹಕ ಭೇಟಿ ನೀಡುತ್ತಾರೆ",
+        step6Title: "ಸಂಗ್ರಹಿಸಿ",
+        step6Desc: "ಪರೀಕ್ಷಿಸಿ ಮತ್ತು ತೆಗೆದುಕೊಳ್ಳಿ",
+        pickupNotice: "⚠️ ಪಿಕಪ್ ಮಾತ್ರ – ಮನೆ ವಿತರಣೆ ಇಲ್ಲ",
+        benefitsTitle: "ಕಲ್ಲಿನ ಅಡುಗೆಯ ಪ್ರಯೋಜನಗಳು",
+        benefit1Title: "ಪೋಷಕಾಂಶಗಳನ್ನು ಉಳಿಸಿಕೊಳ್ಳುತ್ತದೆ",
+        benefit1Desc: "ಕಲ್ಲಿನ ಅಡುಗೆ ಆಹಾರದಲ್ಲಿ ಅಗತ್ಯ ವಿಟಮಿನ್ಗಳು ಮತ್ತು ಖನಿಜಗಳನ್ನು ಸಂರಕ್ಷಿಸುತ್ತದೆ",
+        benefit2Title: "ಸಮಾನ ಶಾಖ",
+        benefit2Desc: "ಏಕರೂಪದ ಶಾಖ ವಿತರಣೆ ಪರಿಪೂರ್ಣವಾಗಿ ಬೇಯಿಸಿದ ಊಟವನ್ನು ಖಾತ್ರಿಪಡಿಸುತ್ತದೆ",
+        benefit3Title: "ವರ್ಧಿತ ರುಚಿ",
+        benefit3Desc: "ನೈಸರ್ಗಿಕ ಖನಿಜಗಳು ಅಧಿಕೃತ ಸಾಂಪ್ರದಾಯಿಕ ಸುವಾಸನೆಗಳನ್ನು ವರ್ಧಿಸುತ್ತವೆ",
+        benefit4Title: "ಪರಿಸರ ಸ್ನೇಹಿ",
+        benefit4Desc: "ಸುಸ್ಥಿರ ಮತ್ತು ಪರಿಸರ ಪ್ರಜ್ಞೆ ಅಡುಗೆ ವಿಧಾನ",
+        benefit5Title: "ರಾಸಾಯನಿಕ-ಮುಕ್ತ",
+        benefit5Desc: "ಯಾವುದೇ ವಿಷಕಾರಿ ಲೇಪನಗಳು ಅಥವಾ ಹಾನಿಕಾರಕ ರಾಸಾಯನಿಕ ಸೇರ್ಪಡೆಗಳಿಲ್ಲ",
+        benefit6Title: "ದೀರ್ಘಕಾಲ ಉಳಿಯುವ",
+        benefit6Desc: "ತಲೆಮಾರುಗಳವರೆಗೆ ಉಳಿಯುವ ಬಾಳಿಕೆ ಬರುವ ಉತ್ಪನ್ನಗಳು",
+        valueTitle: "ನಮ್ಮ ಮೌಲ್ಯ ಪ್ರತಿಪಾದನೆ",
+        valueArtisanTitle: "👨‍🎨 ಕುಶಲಕರ್ಮಿಗಳಿಗೆ",
+        valueArtisan1: "✓ ಡಿಜಿಟಲ್ ಗೋಚರತೆ ಮತ್ತು ಮಾರುಕಟ್ಟೆ ವ್ಯಾಪ್ತಿ",
+        valueArtisan2: "✓ ಮಧ್ಯವರ್ತಿಗಳಿಲ್ಲದೆ ನ್ಯಾಯಯುತ ಬೆಲೆ",
+        valueArtisan3: "✓ ನೇರ ಗ್ರಾಹಕ ಸಂಬಂಧಗಳು",
+        valueArtisan4: "✓ ಕುಶಲಕರ್ಮಿಗಳಿಗೆ ಮನ್ನಣೆ",
+        valueConsumerTitle: "🛒 ಗ್ರಾಹಕರಿಗೆ",
+        valueConsumer1: "✓ ಅಧಿಕೃತ ಹಸ್ತನಿರ್ಮಿತ ಉತ್ಪನ್ನಗಳು",
+        valueConsumer2: "✓ ಖರೀದಿಸುವ ಮೊದಲು ಭೌತಿಕ ತಪಾಸಣೆ",
+        valueConsumer3: "✓ ಗ್ರಾಮೀಣ ಜೀವನೋಪಾಯಗಳನ್ನು ಬೆಂಬಲಿಸಿ",
+        valueConsumer4: "✓ ಸಾಂಸ್ಕೃತಿಕ ಪರಂಪರೆಯನ್ನು ಸಂರಕ್ಷಿಸಿ",
+        valueNgoTitle: "🤲 ಎನ್‌ಜಿಒಗಳಿಗೆ",
+        valueNgo1: "✓ ಸುಲಭ ಕುಶಲಕರ್ಮಿ ಗುರುತಿಸುವಿಕೆ",
+        valueNgo2: "✓ ಪಾರದರ್ಶಕ ಬೆಂಬಲ ವ್ಯವಸ್ಥೆ",
+        valueNgo3: "✓ ಸಾಂಸ್ಕೃತಿಕ ಸಂರಕ್ಷಣೆ ಪ್ರಭಾವ",
+        valueNgo4: "✓ ಅಳೆಯಬಹುದಾದ ಸಮುದಾಯ ಅಭಿವೃದ್ಧಿ",
+        marketingTitle: "ಮಾರುಕಟ್ಟೆ ಮತ್ತು ಜಾಗೃತಿ ಪರಿಹಾರಗಳು",
+        marketing1Title: "ಡಿಜಿಟಲ್ ಉಪಸ್ಥಿತಿ",
+        marketing1Desc: "24/7 ಆನ್‌ಲೈನ್ ಗೋಚರತೆಯನ್ನು ಒದಗಿಸುವ ವೆಬ್‌ಸೈಟ್ ವೇದಿಕೆ",
+        marketing2Title: "ಸಾಮಾಜಿಕ ಮಾಧ್ಯಮ",
+        marketing2Desc: "ಪ್ರಭಾವಿ ಸಹಯೋಗಗಳು ಮತ್ತು ಆಹಾರ ಬ್ಲಾಗರ್ ಪಾಲುದಾರಿಕೆಗಳು",
+        marketing3Title: "ಸ್ಥಳೀಯ ಮಾರುಕಟ್ಟೆಗಳು",
+        marketing3Desc: "ಮಾರುಕಟ್ಟೆ ಸ್ಟಾಲ್‌ಗಳು ಮತ್ತು ನೇರ ಪ್ರದರ್ಶನ ಕಾರ್ಯಕ್ರಮಗಳು",
+        marketing4Title: "ಕಥೆ ಹೇಳುವಿಕೆ",
+        marketing4Desc: "ಕುಶಲಕರ್ಮಿ ಪ್ರಯಾಣ ನಿರೂಪಣೆಗಳು ಮತ್ತು ಸಾಂಸ್ಕೃತಿಕ ಪರಂಪರೆ ವಿಷಯ",
+        reserveTitle: "ನಿಮ್ಮ ಉತ್ಪನ್ನವನ್ನು ಕಾಯ್ದಿರಿಸಿ",
+        reserveSubtitle: "ಹಸ್ತನಿರ್ಮಿತ ಕಲ್ಲಿನ ಉತ್ಪನ್ನವನ್ನು ಕಾಯ್ದಿರಿಸಲು ಕೆಳಗಿನ ಫಾರ್ಮ್ ಅನ್ನು ತುಂಬಿಸಿ",
+        labelName: "ನಿಮ್ಮ ಹೆಸರು *",
+        labelMobile: "ಮೊಬೈಲ್ ಸಂಖ್ಯೆ *",
+        labelEmail: "ಇಮೇಲ್ (ಜಿಮೇಲ್) *",
+        labelProduct: "ಉತ್ಪನ್ನವನ್ನು ಆಯ್ಕೆಮಾಡಿ *",
+        labelPickup: "ಆದ್ಯತೆಯ ಪಿಕಪ್ ಸ್ಥಳ *",
+        selectOptionPlaceholder: "-- ಉತ್ಪನ್ನವನ್ನು ಆರಿಸಿ --",
+        selectOption1: "ಕಲ್ಲಿನ ಅಡುಗೆ ಪಾತ್ರೆಗಳು",
+        selectOption2: "ಅರೆಯುವ ಕಲ್ಲು",
+        selectOption3: "ಉಜ್ಜಲು ಮತ್ತು ಕೊಂಡಿ",
+        selectOption4: "ಕಲ್ಲಿನ ತವಾ",
+        noDeliveryNotice: "⚠️ ಪಿಕಪ್ ಮಾತ್ರ – ಮನೆ ವಿತರಣೆ ಲಭ್ಯವಿಲ್ಲ",
+        submitBtn: "ಕಾಯ್ದಿರಿಸುವಿಕೆಯನ್ನು ಸಲ್ಲಿಸಿ",
+        loadingText: "ಕಾಯ್ದಿರಿಸುವಿಕೆಯನ್ನು ಸಲ್ಲಿಸಲಾಗುತ್ತಿದೆ...",
+        successText: "✅ ಕಾಯ್ದಿರಿಸುವಿಕೆಯನ್ನು ಯಶಸ್ವಿಯಾಗಿ ಸಲ್ಲಿಸಲಾಗಿದೆ!",
+        successDetail: "ನಿಮಗೆ ವಾಟ್ಸ್‌ಆಪ್ (+91 9591502176) ಅಥವಾ ಇಮೇಲ್ (stoneproductsgmail.com) ಮೂಲಕ ದೃಢೀಕರಣಕ್ಕಾಗಿ ಸಂಪರ್ಕಿಸಲಾಗುತ್ತದೆ.",
+        adminTitle: "ನಿರ್ವಾಹಕ ಡ್ಯಾಶ್‌ಬೋರ್ಡ್",
+        adminSubtitle: "ಎಲ್ಲಾ ಉತ್ಪನ್ನ ಕಾಯ್ದಿರಿಸುವಿಕೆಗಳನ್ನು ವೀಕ್ಷಿಸಿ ಮತ್ತು ನಿರ್ವಹಿಸಿ",
+        contactTitle: "ಸಂಪರ್ಕ ಮಾಹಿತಿ",
+        contactEmailTitle: "ಕುಶಲಕರ್ಮಿಗೆ ಇಮೇಲ್ ಮಾಡಿ",
+        emailLink: "ಇಮೇಲ್ ಕಳುಹಿಸಿ",
+        contactPhoneTitle: "ಕುಶಲಕರ್ಮಿಗೆ ಕರೆ ಮಾಡಿ",
+        phoneLink: "ಕರೆ ಮಾಡಿ",
+        contactWhatsappTitle: "ನಮಗೆ ವಾಟ್ಸ್‌ಆಪ್ ಮಾಡಿ",
+        whatsappLink: "ಈಗ ಚಾಟ್ ಮಾಡಿ",
+        footerText: "© 2026 ಸಾಂಪ್ರದಾಯಿಕ ಕಲ್ಲು ಕುಶಲಕರ್ಮಿಗಳ ವೇದಿಕೆ",
+        footerTagline: "ಪರಂಪರೆಯನ್ನು ಸಂರಕ್ಷಿಸುವುದು • ಜೀವನೋಪಾಯಗಳನ್ನು ಬೆಂಬಲಿಸುವುದು • ಸುಸ್ಥಿರತೆಯನ್ನು ಪ್ರಚಾರ ಮಾಡುವುದು",
+        pickupLocation: "pickup_location_kn"
+      }
+    };
+    
+    function toggleLanguage() {
+      currentLanguage = currentLanguage === "en" ? "kn" : "en";
+      updateLanguage();
+    }
+    
+    function updateLanguage() {
+      const t = translations[currentLanguage];
+      const config = window.elementSdk ? window.elementSdk.config : defaultConfig;
+      
+      document.getElementById('logo-text').textContent = t.logoText;
+      
+      const navLinks = document.querySelectorAll('.nav-link');
+      navLinks[0].textContent = t.navHome;
+      navLinks[1].textContent = t.navAbout;
+      navLinks[2].textContent = t.navProducts;
+      navLinks[3].textContent = t.navBenefits;
+      navLinks[4].textContent = t.navReserve;
+      navLinks[5].textContent = t.navAdmin;
+      
+      document.getElementById('lang-toggle').textContent = t.langToggle;
+      document.getElementById('hero-title').textContent = config[t.heroTitle] || defaultConfig[t.heroTitle];
+      document.getElementById('hero-subtitle').textContent = config[t.heroSubtitle] || defaultConfig[t.heroSubtitle];
+      document.getElementById('explore-btn').textContent = t.exploreBtn;
+      document.getElementById('reserve-btn').textContent = t.reserveBtn;
+      
+      document.getElementById('about-title').textContent = t.aboutTitle;
+      document.getElementById('about-text-1').textContent = t.aboutText1;
+      document.getElementById('about-text-2').textContent = t.aboutText2;
+      document.getElementById('about-text-3').textContent = t.aboutText3;
+      document.getElementById('challenges-title').textContent = t.challengesTitle;
+      document.getElementById('challenge-1-title').textContent = t.challenge1Title;
+      document.getElementById('challenge-1-desc').textContent = t.challenge1Desc;
+      document.getElementById('challenge-2-title').textContent = t.challenge2Title;
+      document.getElementById('challenge-2-desc').textContent = t.challenge2Desc;
+      document.getElementById('challenge-3-title').textContent = t.challenge3Title;
+      document.getElementById('challenge-3-desc').textContent = t.challenge3Desc;
+      
+      document.getElementById('problem-title').textContent = t.problemTitle;
+      document.getElementById('problem-card-1-title').textContent = t.problemCard1Title;
+      document.getElementById('problem-card-1-desc').textContent = t.problemCard1Desc;
+      document.getElementById('problem-card-2-title').textContent = t.problemCard2Title;
+      document.getElementById('problem-card-2-desc').textContent = t.problemCard2Desc;
+      document.getElementById('problem-card-3-title').textContent = t.problemCard3Title;
+      document.getElementById('problem-card-3-desc').textContent = t.problemCard3Desc;
+      
+      document.getElementById('products-title').textContent = t.productsTitle;
+      document.getElementById('products-subtitle').textContent = t.productsSubtitle;
+      
+      const productNames = document.querySelectorAll('.product-name');
+      const productDescs = document.querySelectorAll('.product-desc');
+      const productWeights = document.querySelectorAll('.product-weight');
+      const handmadeBadges = document.querySelectorAll('.handmade-badge');
+      const reserveProductBtns = document.querySelectorAll('.reserve-product-btn');
+      
+      productNames[0].textContent = t.productName1;
+      productDescs[0].textContent = t.productDesc1;
+      productWeights[0].textContent = t.productWeight1;
+      productNames[1].textContent = t.productName2;
+      productDescs[1].textContent = t.productDesc2;
+      productWeights[1].textContent = t.productWeight2;
+      productNames[2].textContent = t.productName3;
+      productDescs[2].textContent = t.productDesc3;
+      productWeights[2].textContent = t.productWeight3;
+      productNames[3].textContent = t.productName4;
+      productDescs[3].textContent = t.productDesc4;
+      productWeights[3].textContent = t.productWeight4;
+      
+      handmadeBadges.forEach(badge => badge.textContent = t.handmadeBadge);
+      reserveProductBtns.forEach(btn => btn.textContent = t.reserveProductBtn);
+      
+      document.getElementById('how-title').textContent = t.howTitle;
+      document.getElementById('step-1-title').textContent = t.step1Title;
+      document.getElementById('step-1-desc').textContent = t.step1Desc;
+      document.getElementById('step-2-title').textContent = t.step2Title;
+      document.getElementById('step-2-desc').textContent = t.step2Desc;
+      document.getElementById('step-3-title').textContent = t.step3Title;
+      document.getElementById('step-3-desc').textContent = t.step3Desc;
+      document.getElementById('step-4-title').textContent = t.step4Title;
+      document.getElementById('step-4-desc').textContent = t.step4Desc;
+      document.getElementById('step-5-title').textContent = t.step5Title;
+      document.getElementById('step-5-desc').textContent = t.step5Desc;
+      document.getElementById('step-6-title').textContent = t.step6Title;
+      document.getElementById('step-6-desc').textContent = t.step6Desc;
+      document.getElementById('pickup-notice').textContent = t.pickupNotice;
+      
+      document.getElementById('benefits-title').textContent = t.benefitsTitle;
+      document.getElementById('benefit-1-title').textContent = t.benefit1Title;
+      document.getElementById('benefit-1-desc').textContent = t.benefit1Desc;
+      document.getElementById('benefit-2-title').textContent = t.benefit2Title;
+      document.getElementById('benefit-2-desc').textContent = t.benefit2Desc;
+      document.getElementById('benefit-3-title').textContent = t.benefit3Title;
+      document.getElementById('benefit-3-desc').textContent = t.benefit3Desc;
+      document.getElementById('benefit-4-title').textContent = t.benefit4Title;
+      document.getElementById('benefit-4-desc').textContent = t.benefit4Desc;
+      document.getElementById('benefit-5-title').textContent = t.benefit5Title;
+      document.getElementById('benefit-5-desc').textContent = t.benefit5Desc;
+      document.getElementById('benefit-6-title').textContent = t.benefit6Title;
+      document.getElementById('benefit-6-desc').textContent = t.benefit6Desc;
+      
+      document.getElementById('value-title').textContent = t.valueTitle;
+      document.getElementById('value-artisan-title').textContent = t.valueArtisanTitle;
+      document.querySelectorAll('.value-artisan-1')[0].textContent = t.valueArtisan1;
+      document.querySelectorAll('.value-artisan-2')[0].textContent = t.valueArtisan2;
+      document.querySelectorAll('.value-artisan-3')[0].textContent = t.valueArtisan3;
+      document.querySelectorAll('.value-artisan-4')[0].textContent = t.valueArtisan4;
+      document.getElementById('value-consumer-title').textContent = t.valueConsumerTitle;
+      document.querySelectorAll('.value-consumer-1')[0].textContent = t.valueConsumer1;
+      document.querySelectorAll('.value-consumer-2')[0].textContent = t.valueConsumer2;
+      document.querySelectorAll('.value-consumer-3')[0].textContent = t.valueConsumer3;
+      document.querySelectorAll('.value-consumer-4')[0].textContent = t.valueConsumer4;
+      document.getElementById('value-ngo-title').textContent = t.valueNgoTitle;
+      document.querySelectorAll('.value-ngo-1')[0].textContent = t.valueNgo1;
+      document.querySelectorAll('.value-ngo-2')[0].textContent = t.valueNgo2;
+      document.querySelectorAll('.value-ngo-3')[0].textContent = t.valueNgo3;
+      document.querySelectorAll('.value-ngo-4')[0].textContent = t.valueNgo4;
+      
+      document.getElementById('marketing-title').textContent = t.marketingTitle;
+      document.getElementById('marketing-1-title').textContent = t.marketing1Title;
+      document.getElementById('marketing-1-desc').textContent = t.marketing1Desc;
+      document.getElementById('marketing-2-title').textContent = t.marketing2Title;
+      document.getElementById('marketing-2-desc').textContent = t.marketing2Desc;
+      document.getElementById('marketing-3-title').textContent = t.marketing3Title;
+      document.getElementById('marketing-3-desc').textContent = t.marketing3Desc;
+      document.getElementById('marketing-4-title').textContent = t.marketing4Title;
+      document.getElementById('marketing-4-desc').textContent = t.marketing4Desc;
+      
+      document.getElementById('reserve-title').textContent = t.reserveTitle;
+      document.getElementById('reserve-subtitle').textContent = t.reserveSubtitle;
+      document.getElementById('label-name').textContent = t.labelName;
+      document.getElementById('label-mobile').textContent = t.labelMobile;
+      document.getElementById('label-email').textContent = t.labelEmail;
+      document.getElementById('label-product').textContent = t.labelProduct;
+      document.getElementById('label-pickup').textContent = t.labelPickup;
+      document.querySelector('.select-option-placeholder').textContent = t.selectOptionPlaceholder;
+      document.querySelector('.select-option-1').textContent = t.selectOption1;
+      document.querySelector('.select-option-2').textContent = t.selectOption2;
+      document.querySelector('.select-option-3').textContent = t.selectOption3;
+      document.querySelector('.select-option-4').textContent = t.selectOption4;
+      document.getElementById('no-delivery-notice').textContent = t.noDeliveryNotice;
+      document.getElementById('submit-btn').textContent = t.submitBtn;
+      document.getElementById('loading-text').textContent = t.loadingText;
+      document.getElementById('success-text').textContent = t.successText;
+      document.getElementById('success-detail').textContent = t.successDetail;
+      
+      document.getElementById('admin-title').textContent = t.adminTitle;
+      document.getElementById('admin-subtitle').textContent = t.adminSubtitle;
+      
+      document.getElementById('contact-title').textContent = t.contactTitle;
+      document.getElementById('contact-email-title').textContent = t.contactEmailTitle;
+      document.getElementById('email-link').textContent = t.emailLink;
+      document.getElementById('contact-phone-title').textContent = t.contactPhoneTitle;
+      document.getElementById('phone-link').textContent = t.phoneLink;
+      document.getElementById('contact-whatsapp-title').textContent = t.contactWhatsappTitle;
+      document.getElementById('whatsapp-link').textContent = t.whatsappLink;
+      
+      document.getElementById('footer-text').textContent = t.footerText;
+      document.getElementById('footer-tagline').textContent = t.footerTagline;
+      
+      document.getElementById('pickup-location').placeholder = config[t.pickupLocation] || defaultConfig[t.pickupLocation];
+    }
+    
+    function formatDate(isoString) {
+      const date = new Date(isoString);
+      return date.toLocaleDateString() + ' ' + date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    }
+    
+    function getStatusClass(status) {
+      const statusMap = {
+        'pending': 'status-pending',
+        'confirmed': 'status-confirmed',
+        'completed': 'status-completed',
+        'cancelled': 'status-cancelled'
+      };
+      return statusMap[status] || 'status-pending';
+    }
+    
+    function renderReservations() {
+      const tbody = document.getElementById('reservations-tbody');
+      
+      if (filteredReservations.length === 0) {
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="8" class="text-center py-8">
+              <div class="text-4xl mb-2">📋</div>
+              <p class="text-gray-500">No reservations found</p>
+            </td>
+          </tr>
+        `;
+        return;
+      }
+      
+      const sortedReservations = [...filteredReservations].sort((a, b) => {
+        return new Date(b.created_at) - new Date(a.created_at);
+      });
+      
+      tbody.innerHTML = sortedReservations.map(reservation => `
+        <tr data-id="${reservation.__backendId}">
+          <td>${formatDate(reservation.created_at)}</td>
+          <td>${reservation.customer_name}</td>
+          <td><a href="tel:${reservation.mobile_number}" class="text-blue-600 hover:underline">${reservation.mobile_number}</a></td>
+          <td><a href="mailto:${reservation.email}" class="text-blue-600 hover:underline">${reservation.email}</a></td>
+          <td>${reservation.product_name}</td>
+          <td>${reservation.pickup_location}</td>
+          <td>
+            <select class="status-select ${getStatusClass(reservation.status)} px-3 py-1 rounded-full text-xs font-semibold border-none" data-id="${reservation.__backendId}">
+              <option value="pending" ${reservation.status === 'pending' ? 'selected' : ''}>Pending</option>
+              <option value="confirmed" ${reservation.status === 'confirmed' ? 'selected' : ''}>Confirmed</option>
+              <option value="completed" ${reservation.status === 'completed' ? 'selected' : ''}>Completed</option>
+              <option value="cancelled" ${reservation.status === 'cancelled' ? 'selected' : ''}>Cancelled</option>
+            </select>
+          </td>
+          <td>
+            <div class="flex gap-2">
+              <a href="https://wa.me/${reservation.mobile_number.replace(/[\s\-\+]/g, '')}" target="_blank" rel="noopener noreferrer" class="text-green-600 hover:text-green-800" title="WhatsApp">💬</a>
+              <a href="tel:${reservation.mobile_number}" class="text-blue-600 hover:text-blue-800" title="Call">📱</a>
+              <a href="mailto:${reservation.email}" class="text-purple-600 hover:text-purple-800" title="Email">📧</a>
+            </div>
+          </td>
+        </tr>
+      `).join('');
+      
+      const statusSelects = tbody.querySelectorAll('.status-select');
+      statusSelects.forEach(select => {
+        select.addEventListener('change', async function() {
+          const reservationId = this.getAttribute('data-id');
+          const newStatus = this.value;
+          await updateReservationStatus(reservationId, newStatus);
+        });
+      });
+      
+      updateAdminStats();
+    }
+    
+    async function updateReservationStatus(reservationId, newStatus) {
+      const reservation = reservations.find(r => r.__backendId === reservationId);
+      if (!reservation) return;
+      
+      reservation.status = newStatus;
+      
+      if (window.dataSdk) {
+        const result = await window.dataSdk.update(reservation);
+        if (!result.isOk) {
+          const errorDiv = document.createElement('div');
+          errorDiv.className = 'fixed top-4 right-4 bg-red-500 text-white px-6 py-3 rounded-lg shadow-lg z-50';
+          errorDiv.textContent = '❌ Failed to update status';
+          document.body.appendChild(errorDiv);
+          setTimeout(() => errorDiv.remove(), 3000);
+        }
+      }
+    }
+    
+    function updateAdminStats() {
+      const total = filteredReservations.length;
+      const pending = filteredReservations.filter(r => r.status === 'pending').length;
+      const confirmed = filteredReservations.filter(r => r.status === 'confirmed').length;
+      const completed = filteredReservations.filter(r => r.status === 'completed').length;
+      
+      document.getElementById('admin-stats').textContent = 
+        `Total: ${total} | Pending: ${pending} | Confirmed: ${confirmed} | Completed: ${completed}`;
+    }
+    
+    function applyFilters() {
+      const productFilter = document.getElementById('filter-product').value;
+      const statusFilter = document.getElementById('filter-status').value;
+      const searchText = document.getElementById('search-box').value.toLowerCase();
+      
+      filteredReservations = reservations.filter(reservation => {
+        const matchesProduct = !productFilter || reservation.product_name === productFilter;
+        const matchesStatus = !statusFilter || reservation.status === statusFilter;
+        const matchesSearch = !searchText || 
+          reservation.customer_name.toLowerCase().includes(searchText) ||
+          reservation.email.toLowerCase().includes(searchText) ||
+          reservation.mobile_number.includes(searchText);
+        
+        return matchesProduct && matchesStatus && matchesSearch;
+      });
+      
+      renderReservations();
+    }
+    
+    async function onConfigChange(config) {
+      const bgColor = config.background_color || defaultConfig.background_color;
+      const surfaceColor = config.surface_color || defaultConfig.surface_color;
+      const textColor = config.text_color || defaultConfig.text_color;
+      const primaryColor = config.primary_action_color || defaultConfig.primary_action_color;
+      const secondaryColor = config.secondary_action_color || defaultConfig.secondary_action_color;
+      const fontFamily = config.font_family || defaultConfig.font_family;
+      const fontSize = config.font_size || defaultConfig.font_size;
+      
+      document.body.style.backgroundColor = bgColor;
+      document.body.style.color = textColor;
+      
+      const mainNav = document.getElementById('main-nav');
+      mainNav.style.backgroundColor = surfaceColor;
+      mainNav.style.color = textColor;
+      
+      const navLinks = document.querySelectorAll('.nav-link');
+      navLinks.forEach(link => {
+        link.style.color = textColor;
+      });
+      
+      const logoText = document.getElementById('logo-text');
+      logoText.style.color = textColor;
+      
+      const langToggle = document.getElementById('lang-toggle');
+      langToggle.style.backgroundColor = primaryColor;
+      langToggle.style.color = surfaceColor;
+      
+      const heroTitle = document.getElementById('hero-title');
+      heroTitle.style.color = textColor;
+      heroTitle.style.fontSize = `${fontSize * 3.5}px`;
+      heroTitle.style.fontFamily = `${fontFamily}, Arial, sans-serif`;
+      
+      const heroSubtitle = document.getElementById('hero-subtitle');
+      heroSubtitle.style.color = textColor;
+      heroSubtitle.style.fontSize = `${fontSize * 1.5}px`;
+      heroSubtitle.style.fontFamily = `${fontFamily}, Arial, sans-serif`;
+      
+      const exploreBtnEl = document.getElementById('explore-btn');
+      exploreBtnEl.style.backgroundColor = primaryColor;
+      exploreBtnEl.style.color = surfaceColor;
+      exploreBtnEl.style.fontSize = `${fontSize * 1.25}px`;
+      exploreBtnEl.style.fontFamily = `${fontFamily}, Arial, sans-serif`;
+      
+      const reserveBtnEl = document.getElementById('reserve-btn');
+      reserveBtnEl.style.backgroundColor = secondaryColor;
+      reserveBtnEl.style.color = surfaceColor;
+      reserveBtnEl.style.fontSize = `${fontSize * 1.25}px`;
+      reserveBtnEl.style.fontFamily = `${fontFamily}, Arial, sans-serif`;
+      
+      const sectionTitles = document.querySelectorAll('#about-title, #problem-title, #products-title, #how-title, #benefits-title, #value-title, #marketing-title, #reserve-title, #contact-title, #admin-title');
+      sectionTitles.forEach(title => {
+        title.style.color = textColor;
+        title.style.fontSize = `${fontSize * 2.5}px`;
+        title.style.fontFamily = `${fontFamily}, Arial, sans-serif`;
+      });
+      
+      const bodyText = document.querySelectorAll('#about-text-1, #about-text-2, #about-text-3, #products-subtitle, #reserve-subtitle, #admin-subtitle, #footer-tagline');
+      bodyText.forEach(text => {
+        text.style.color = textColor;
+        text.style.fontSize = `${fontSize * 1.125}px`;
+        text.style.fontFamily = `${fontFamily}, Arial, sans-serif`;
+      });
+      
+      const allCards = document.querySelectorAll('.rounded-xl.shadow-lg, .card-hover');
+      allCards.forEach(card => {
+        card.style.backgroundColor = surfaceColor;
+        card.style.color = textColor;
+      });
+      
+      const productNames = document.querySelectorAll('.product-name');
+      productNames.forEach(name => {
+        name.style.fontSize = `${fontSize * 1.25}px`;
+        name.style.fontFamily = `${fontFamily}, Arial, sans-serif`;
+      });
+      
+      const handmadeBadges = document.querySelectorAll('.handmade-badge');
+      handmadeBadges.forEach(badge => {
+        badge.style.backgroundColor = primaryColor;
+        badge.style.color = surfaceColor;
+        badge.style.fontSize = `${fontSize * 0.75}px`;
+      });
+      
+      const reserveProductBtns = document.querySelectorAll('.reserve-product-btn');
+      reserveProductBtns.forEach(btn => {
+        btn.style.backgroundColor = primaryColor;
+        btn.style.color = surfaceColor;
+        btn.style.fontSize = `${fontSize}px`;
+        btn.style.fontFamily = `${fontFamily}, Arial, sans-serif`;
+      });
+      
+      const howSteps = document.querySelectorAll('#how-it-works .text-center > div');
+      howSteps.forEach(step => {
+        step.style.backgroundColor = primaryColor;
+      });
+      
+      const formLabels = document.querySelectorAll('#reservation-form label, #admin-login-form label');
+      formLabels.forEach(label => {
+        label.style.color = textColor;
+        label.style.fontSize = `${fontSize}px`;
+        label.style.fontFamily = `${fontFamily}, Arial, sans-serif`;
+      });
+      
+      const formInputs = document.querySelectorAll('#reservation-form input, #reservation-form select, #admin-login-form input');
+      formInputs.forEach(input => {
+        input.style.borderColor = textColor;
+        input.style.color = textColor;
+        input.style.fontSize = `${fontSize}px`;
+        input.style.fontFamily = `${fontFamily}, Arial, sans-serif`;
+      });
+      
+      const noDeliveryNotice = document.getElementById('no-delivery-notice');
+      noDeliveryNotice.style.backgroundColor = secondaryColor;
+      noDeliveryNotice.style.color = surfaceColor;
+      noDeliveryNotice.style.fontSize = `${fontSize}px`;
+      
+      const submitBtn = document.getElementById('submit-btn');
+      submitBtn.style.backgroundColor = primaryColor;
+      submitBtn.style.color = surfaceColor;
+      submitBtn.style.fontSize = `${fontSize * 1.25}px`;
+      submitBtn.style.fontFamily = `${fontFamily}, Arial, sans-serif`;
+      
+      const adminLoginBtn = document.getElementById('admin-login-btn');
+      adminLoginBtn.style.backgroundColor = primaryColor;
+      adminLoginBtn.style.color = surfaceColor;
+      
+      const adminLogoutBtn = document.getElementById('admin-logout-btn');
+      adminLogoutBtn.style.backgroundColor = secondaryColor;
+      adminLogoutBtn.style.color = surfaceColor;
+      
+      const clearFiltersBtn = document.getElementById('clear-filters-btn');
+      clearFiltersBtn.style.backgroundColor = secondaryColor;
+      clearFiltersBtn.style.color = surfaceColor;
+      
+      const loadingIndicator = document.querySelector('#loading-indicator .border-b-2');
+      loadingIndicator.style.borderColor = primaryColor;
+      
+      const contactLinks = document.querySelectorAll('#email-link, #phone-link, #whatsapp-link');
+      contactLinks.forEach(link => {
+        link.style.backgroundColor = primaryColor;
+        link.style.color = surfaceColor;
+        link.style.fontSize = `${fontSize}px`;
+        link.style.fontFamily = `${fontFamily}, Arial, sans-serif`;
+      });
+      
+      const footer = document.querySelector('footer');
+      footer.style.backgroundColor = surfaceColor;
+      footer.style.color = textColor;
+      
+      const footerText = document.getElementById('footer-text');
+      footerText.style.fontSize = `${fontSize * 1.125}px`;
+      footerText.style.fontFamily = `${fontFamily}, Arial, sans-serif`;
+      
+      const artisanEmail = config.artisan_email || defaultConfig.artisan_email;
+      const artisanPhone = config.artisan_phone || defaultConfig.artisan_phone;
+      const artisanWhatsapp = config.artisan_whatsapp || defaultConfig.artisan_whatsapp;
+      
+      document.getElementById('artisan-email-display').textContent = artisanEmail;
+      document.getElementById('artisan-phone-display').textContent = artisanPhone;
+      document.getElementById('artisan-whatsapp-display').textContent = artisanWhatsapp;
+      document.getElementById('email-link').href = `mailto:${artisanEmail}`;
+      document.getElementById('phone-link').href = `tel:${artisanPhone.replace(/[\s\-]/g, '')}`;
+      
+      const whatsappNumber = artisanWhatsapp.replace(/[\s\-\+]/g, '');
+      document.getElementById('whatsapp-link').href = `https://wa.me/${whatsappNumber}`;
+      
+      updateLanguage();
+    }
+    
+    const dataHandler = {
+      onDataChanged(data) {
+        reservations = data;
+        filteredReservations = data;
+        if (isAdminLoggedIn) {
+          applyFilters();
+        }
+      }
+    };
+    
+    async function init() {
+      if (window.dataSdk) {
+        const initResult = await window.dataSdk.init(dataHandler);
+        if (!initResult.isOk) {
+          console.error("Failed to initialize Data SDK");
+        }
+      }
+      
+      if (window.elementSdk) {
+        await window.elementSdk.init({
+          defaultConfig,
+          onConfigChange,
+          mapToCapabilities: (config) => ({
+            recolorables: [
+              {
+                get: () => config.background_color || defaultConfig.background_color,
+                set: (value) => {
+                  config.background_color = value;
+                  window.elementSdk.setConfig({ background_color: value });
+                }
+              },
+              {
+                get: () => config.surface_color || defaultConfig.surface_color,
+                set: (value) => {
+                  config.surface_color = value;
+                  window.elementSdk.setConfig({ surface_color: value });
+                }
+              },
+              {
+                get: () => config.text_color || defaultConfig.text_color,
+                set: (value) => {
+                  config.text_color = value;
+                  window.elementSdk.setConfig({ text_color: value });
+                }
+              },
+              {
+                get: () => config.primary_action_color || defaultConfig.primary_action_color,
+                set: (value) => {
+                  config.primary_action_color = value;
+                  window.elementSdk.setConfig({ primary_action_color: value });
+                }
+              },
+              {
+                get: () => config.secondary_action_color || defaultConfig.secondary_action_color,
+                set: (value) => {
+                  config.secondary_action_color = value;
+                  window.elementSdk.setConfig({ secondary_action_color: value });
+                }
+              }
+            ],
+            borderables: [],
+            fontEditable: {
+              get: () => config.font_family || defaultConfig.font_family,
+              set: (value) => {
+                config.font_family = value;
+                window.elementSdk.setConfig({ font_family: value });
+              }
+            },
+            fontSizeable: {
+              get: () => config.font_size || defaultConfig.font_size,
+              set: (value) => {
+                config.font_size = value;
+                window.elementSdk.setConfig({ font_size: value });
+              }
+            }
+          }),
+          mapToEditPanelValues: (config) => new Map([
+            ["site_title_en", config.site_title_en || defaultConfig.site_title_en],
+            ["site_title_kn", config.site_title_kn || defaultConfig.site_title_kn],
+            ["hero_subtitle_en", config.hero_subtitle_en || defaultConfig.hero_subtitle_en],
+            ["hero_subtitle_kn", config.hero_subtitle_kn || defaultConfig.hero_subtitle_kn],
+            ["artisan_email", config.artisan_email || defaultConfig.artisan_email],
+            ["artisan_phone", config.artisan_phone || defaultConfig.artisan_phone],
+            ["artisan_whatsapp", config.artisan_whatsapp || defaultConfig.artisan_whatsapp],
+            ["pickup_location_en", config.pickup_location_en || defaultConfig.pickup_location_en],
+            ["pickup_location_kn", config.pickup_location_kn || defaultConfig.pickup_location_kn],
+            ["admin_password", config.admin_password || defaultConfig.admin_password]
+          ])
+        });
+      }
+      
+      document.getElementById('lang-toggle').addEventListener('click', toggleLanguage);
+      
+      const reserveProductBtns = document.querySelectorAll('.reserve-product-btn');
+      reserveProductBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+          const productName = this.getAttribute('data-product');
+          document.getElementById('product-select').value = productName;
+          document.getElementById('reserve').scrollIntoView({ behavior: 'smooth' });
+        });
+      });
+      
+      const form = document.getElementById('reservation-form');
+      form.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        if (reservations.length >= 999) {
+          const errorDiv = document.createElement('div');
+          errorDiv.className = 'success-message';
+          errorDiv.style.backgroundColor = '#ef4444';
+          errorDiv.innerHTML = '<p class="font-semibold">⚠️ Maximum Reservations Reached</p><p class="text-sm mt-2">The maximum limit of 999 reservations has been reached. Please contact us directly at +91 9591502176.</p>';
+          form.appendChild(errorDiv);
+          setTimeout(() => errorDiv.remove(), 5000);
+          return;
+        }
+        
+        const customerName = document.getElementById('customer-name').value;
+        const mobileNumber = document.getElementById('mobile-number').value;
+        const email = document.getElementById('email').value;
+        const productName = document.getElementById('product-select').value;
+        const pickupLocation = document.getElementById('pickup-location').value;
+        
+        const loadingIndicator = document.getElementById('loading-indicator');
+        const submitBtn = document.getElementById('submit-btn');
+        const successMessage = document.getElementById('success-message');
+        
+        submitBtn.disabled = true;
+        loadingIndicator.style.display = 'block';
+        successMessage.style.display = 'none';
+        
+        const reservation = {
+          id: Date.now().toString(),
+          customer_name: customerName,
+          mobile_number: mobileNumber,
+          email: email,
+          product_name: productName,
+          pickup_location: pickupLocation,
+          created_at: new Date().toISOString(),
+          status: "pending"
+        };
+        
+        if (window.dataSdk) {
+          const result = await window.dataSdk.create(reservation);
+          
+          loadingIndicator.style.display = 'none';
+          submitBtn.disabled = false;
+          
+          if (result.isOk) {
+            form.reset();
+            successMessage.style.display = 'block';
+            setTimeout(() => {
+              successMessage.style.display = 'none';
+            }, 8000);
+          } else {
+            const errorDiv = document.createElement('div');
+            errorDiv.className = 'success-message';
+            errorDiv.style.backgroundColor = '#ef4444';
+            errorDiv.innerHTML = '<p class="font-semibold">❌ Submission Failed</p><p class="text-sm mt-2">Unable to submit reservation. Please contact us directly at +91 9591502176 or stoneproducts9@gmail.com.</p>';
+            form.appendChild(errorDiv);
+            setTimeout(() => errorDiv.remove(), 5000);
+          }
+        }
+      });
+      
+      const adminLoginForm = document.getElementById('admin-login-form');
+      adminLoginForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const password = document.getElementById('admin-password-input').value;
+        const config = window.elementSdk ? window.elementSdk.config : defaultConfig;
+        const correctPassword = config.admin_password || defaultConfig.admin_password;
+        
+        if (password === correctPassword) {
+          isAdminLoggedIn = true;
+          document.getElementById('admin-login').style.display = 'none';
+          document.getElementById('admin-dashboard').style.display = 'block';
+          document.getElementById('admin-error').style.display = 'none';
+          filteredReservations = reservations;
+          renderReservations();
+        } else {
+          document.getElementById('admin-error').style.display = 'block';
+        }
+      });
+      
+      document.getElementById('admin-logout-btn').addEventListener('click', function() {
+        isAdminLoggedIn = false;
+        document.getElementById('admin-login').style.display = 'block';
+        document.getElementById('admin-dashboard').style.display = 'none';
+        document.getElementById('admin-password-input').value = '';
+      });
+      
+      document.getElementById('filter-product').addEventListener('change', applyFilters);
+      document.getElementById('filter-status').addEventListener('change', applyFilters);
+      document.getElementById('search-box').addEventListener('input', applyFilters);
+      
+      document.getElementById('clear-filters-btn').addEventListener('click', function() {
+        document.getElementById('filter-product').value = '';
+        document.getElementById('filter-status').value = '';
+        document.getElementById('search-box').value = '';
+        applyFilters();
+      });
+      
+      await onConfigChange(window.elementSdk ? window.elementSdk.config : defaultConfig);
+    }
+    
+    init();
+  </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9b730ba3c5646e29',t:'MTc2NzI4MTI5Ni4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
