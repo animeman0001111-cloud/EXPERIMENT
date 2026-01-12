@@ -102,85 +102,47 @@
       background-color: #fee2e2;
       color: #991b1b;
     }
-   * {
-  box-sizing: border-box;
-  font-family: 'Segoe UI', sans-serif;
+	/* ===== CARD SYSTEM ===== */
+.card-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:36px;
 }
 
-body {
-  background: #f2f2f2;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+.box{
+  padding:34px;
+  border-radius:26px;
+  background:linear-gradient(145deg,#ffffff,#fff7e2);
+  box-shadow:0 25px 60px rgba(0,0,0,.25);
+  font-size:18px;
+  transition:.6s cubic-bezier(.19,1,.22,1);
+  position:relative;
 }
 
-.product-card {
-  background: #ffffff;
-  width: 320px;
-  border-radius: 18px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-  overflow: hidden;
+.box::before{
+  content:'';
+  position:absolute;
+  inset:-2px;
+  border-radius:28px;
+  background:conic-gradient(var(--accent1),var(--accent2),var(--accent3),var(--accent4),var(--accent1));
+  opacity:.35;
+  filter:blur(8px);
+  z-index:-1;
+  animation:spin 10s linear infinite;
 }
 
-.image-wrapper {
-  padding: 50px;
-  display: flex;
-  justify-content: center;
+@keyframes spin{to{transform:rotate(360deg)}}
+
+.box:hover{
+  transform:translateY(-22px) scale(1.08);
 }
 
-.image-wrapper img {
-  width: 100px;
-  height: 50px;
-}
-
-.card-content {
-  padding: 20px;
-}
-
-.card-content h2 {
-  margin: 0;
-  font-size: 22px;
-  font-weight: 700;
-  color: #111;
-}
-
-.description {
-  margin: 8px 0 14px;
-  font-size: 14px;
-  color: #555;
-}
-
-.weight {
-  font-size: 14px;
-  margin-bottom: 14px;
-}
-
-.badge {
-  display: inline-block;
-  background: #8b5cf6;
-  color: #fff;
-  padding: 6px 14px;
-  border-radius: 20px;
-  font-size: 13px;
-  margin-bottom: 18px;
-}
-
-button {
-  width: 100%;
-  background: #8b5cf6;
-  border: none;
-  padding: 14px;
-  font-size: 16px;
-  color: white;
-  border-radius: 12px;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-button:hover {
-  background: #7c3aed;
-}
+/* ===== COLOR TAGS ===== */
+.pink{border-left:7px solid var(--accent1)}
+.blue{border-left:7px solid var(--accent2)}
+.green{border-left:7px solid var(--accent3)}
+.yellow{border-left:7px solid var(--accent4)}
+.red{border-left:7px solid #ef4444}
   </style>
   <style>@view-transition { navigation: auto; }</style>
  </head>
@@ -207,7 +169,7 @@ button:hover {
       </div>
      </div><!-- Cultural Illustration -->
      <div class="mt-16 text-center">
-      <div class="inline-flex items-center justify-center space-x-8 text-6xl"><span></span> <span>🪨</span> <span>⚒️</span> <span>🔨</span>
+      <div class="inline-flex items-center justify-center space-x-8 text-6xl"><span>🏺</span> <span>🪨</span> <span>⚒️</span> <span>🔨</span>
       </div>
      </div>
     </div>
@@ -281,92 +243,48 @@ button:hover {
      <p id="products-subtitle" class="text-center text-lg mb-12">Authentic handcrafted stone cookware for traditional cooking</p>
      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8"><!-- Product 1 -->
       <div class="card-hover rounded-xl shadow-lg overflow-hidden">
-      <div><img src="IMAGE1.jpg"></div>
-       <div class="p-6">
-        
-    <div class="card-content">
-      <h2>Stone Cookware</h2>
-      <p class="description">
-        Traditional cooking vessels for authentic flavors
-      </p>
-
-      <p class="weight">⚖️ <strong>Weight:</strong> 3-5 kg</p>
-
-      <span class="badge">🖐️ Handmade</span>
-
-       <button class="reserve-product-btn w-full py-2 rounded-lg font-semibold transition" data-product="Mortar &amp; Pestle"> Reserve Product </button>
+       
+        <img src="‪IMAGE3.png"width="150px"height+"150px">
        </div>
-    </div>
-
-  </div>
-
+       <div class="p-6">
+        <h3 class="product-name text-xl font-bold mb-2">Stone Cookware</h3>
+        <p class="product-desc text-sm mb-3">Traditional cooking vessels for authentic flavors</p>
+        <p class="product-weight text-xs mb-4">⚖️ Weight: 3-5 kg</p><span class="handmade-badge inline-block px-3 py-1 rounded-full text-xs font-semibold mb-4">✋ Handmade</span> <button class="reserve-product-btn w-full py-2 rounded-lg font-semibold transition" data-product="Stone Cookware"> Reserve Product </button>
+       </div>
       </div><!-- Product 2 -->
       <div class="card-hover rounded-xl shadow-lg overflow-hidden">
-              <div class="p-6">
-          <div><img src="IMAGE2.jpg"width="650px" height="650px"></div>
-       <div class="card-content">
-      <h2>Stone Cookware</h2>
-      <p class="description">
-        Traditional cooking vessels for authentic flavors
-      </p>
-
-      <p class="weight">⚖️ <strong>Weight:</strong> 3-5 kg</p>
-
-      <span class="badge">🖐️ Handmade</span>
-
-       <button class="reserve-product-btn w-full py-2 rounded-lg font-semibold transition" data-product="Mortar &amp; Pestle"> Reserve Product </button>
+       <div class="h-48 flex items-center justify-center text-8xl">
+        ⚙️
        </div>
-    </div>
-
-  </div>
-
+       <div class="p-6">
+        <h3 class="product-name text-xl font-bold mb-2">Grinding Stone</h3>
+        <p class="product-desc text-sm mb-3">Traditional stone grinder for spices and grains</p>
+        <p class="product-weight text-xs mb-4">⚖️ Weight: 8-12 kg</p><span class="handmade-badge inline-block px-3 py-1 rounded-full text-xs font-semibold mb-4">✋ Handmade</span> <button class="reserve-product-btn w-full py-2 rounded-lg font-semibold transition" data-product="Grinding Stone"> Reserve Product </button>
+       </div>
       </div><!-- Product 3 -->
       <div class="card-hover rounded-xl shadow-lg overflow-hidden">
-      
-            <div><img src="IMAGE3.png"width="450px" height="650px"></div>
-       
+       <div class="h-48 flex items-center justify-center text-8xl">
+        🫕
+       </div>
        <div class="p-6">
-             <div><img src="IMAGE2.jpg"width="650px" height="650px"></div>
-       <div class="card-content">
-      <h2>Stone Cookware</h2>
-      <p class="description">
-        Traditional cooking vessels for authentic flavors
-      </p>
-
-      <p class="weight">⚖️ <strong>Weight:</strong> 3-5 kg</p>
-
-      <span class="badge">🖐️ Handmade</span>
-
-       <button class="reserve-product-btn w-full py-2 rounded-lg font-semibold transition" data-product="Mortar &amp; Pestle"> Reserve Product </button>
+        <h3 class="product-name text-xl font-bold mb-2">Mortar &amp; Pestle</h3>
+        <p class="product-desc text-sm mb-3">Essential tool for crushing herbs and spices</p>
+        <p class="product-weight text-xs mb-4">⚖️ Weight: 2-4 kg</p><span class="handmade-badge inline-block px-3 py-1 rounded-full text-xs font-semibold mb-4">✋ Handmade</span> <button class="reserve-product-btn w-full py-2 rounded-lg font-semibold transition" data-product="Mortar &amp; Pestle"> Reserve Product </button>
        </div>
-    </div>
-
-  </div>
-       <div class="product-card">
-    
-    <div class="image-wrapper">
-      <img src="IMAGE2.jpg" alt="Stone Cookware">
-    </div>
-
-    <div class="card-content">
-      <h2>Stone Cookware</h2>
-      <p class="description">
-        Traditional cooking vessels for authentic flavors
-      </p>
-
-      <p class="weight">⚖️ <strong>Weight:</strong> 3-5 kg</p>
-
-      <span class="badge">🖐️ Handmade</span>
-
-       <button class="reserve-product-btn w-full py-2 rounded-lg font-semibold transition" data-product="Mortar &amp; Pestle"> Reserve Product </button>
+      </div><!-- Product 4 -->
+      <div class="card-hover rounded-xl shadow-lg overflow-hidden">
+       <div class="h-48 flex items-center justify-center text-8xl">
+        🍳
        </div>
+       <div class="p-6">
+        <h3 class="product-name text-xl font-bold mb-2">Stone Tawa</h3>
+        <p class="product-desc text-sm mb-3">Flat stone griddle for making rotis and dosas</p>
+        <p class="product-weight text-xs mb-4">⚖️ Weight: 4-6 kg</p><span class="handmade-badge inline-block px-3 py-1 rounded-full text-xs font-semibold mb-4">✋ Handmade</span> <button class="reserve-product-btn w-full py-2 rounded-lg font-semibold transition" data-product="Stone Tawa"> Reserve Product </button>
+       </div>
+      </div>
+     </div>
     </div>
-
-  </div>
-
-
-    
-    </section><!-- How It Works -->
+   </section><!-- How It Works -->
    <section id="how-it-works" class="w-full py-20 px-4">
     <div class="max-w-7xl mx-auto">
      <h2 id="how-title" class="text-4xl font-bold text-center mb-12">How Reservation Works</h2>
@@ -1619,37 +1537,4 @@ button:hover {
     init();
   </script>
  <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9b730ba3c5646e29',t:'MTc2NzI4MTI5Ni4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
-
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
